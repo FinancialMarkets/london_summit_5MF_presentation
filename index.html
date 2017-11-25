@@ -1,0 +1,587 @@
+<!doctype html>
+<html>
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>5-MINUTE FINANCE</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <!-- <link rel="stylesheet" href="css/theme/black.css"> -->
+    <link rel="stylesheet" href="css/theme/league.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+	<section>
+	  <section data-background-image="./city_skyline.jpg">
+	    <h2>5-MINUTE FINANCE</h2>
+	    <br>
+	    <br>
+	    <br>
+	    <br>
+	    <br>
+	    <br>
+	  </section>
+	  <section>
+	    <h2>5-MINUTE FINANCE</h2>
+	    <br>
+	    <p> MATT BRIGIDA </p>
+	    <p> Associate Professor of Finance (SUNY Polytechnic Institute) & Financial Education Advisor, Milken Institute </p>
+	    <p> London Summit 12/5/2017 </p>
+	  </section>
+	</section>
+
+	<section>
+	  <section>
+	    <h3>Visualize Real-World Data</h3>
+
+	  </section>
+	  <section data-background-image="./code_image.jpg">
+	    <div class="stretch">
+	      <iframe src="https://micfm.shinyapps.io/stochastic_vol_app3/" height="100%" width="100%"></iframe>
+	    </div>
+	  </section>
+	</section>
+
+	<section>
+	<section>
+	  <h3>Complex Calcuations</h3>
+
+	</section>
+	  <section data-background-image="./code_image.jpg">
+	    <div class="stretch">
+	      <iframe src="https://micfm.shinyapps.io/uses_monte_carlo_app2/" height="100%" width="100%"></iframe>
+	      </div>
+	</section>
+	  <section data-background-image="./code_image.jpg">
+	    <h3>Option Theta</h3>
+	    <div class="stretch">
+	      <iframe src="https://micfm.shinyapps.io/greeks_app3/" height="100%" width="100%"></iframe>
+	      </div>
+	</section>
+	</section>
+
+	<section>
+	  <section>
+	    <h3>Make Textbooks Come Alive</h3>
+
+	  </section>
+	  <section>
+
+	  </section>
+
+	</section>
+	
+	<section>
+	  <section>
+	    <h4>Crowdsourced Development</h4> 
+	    <!-- <img data-src="./GitHub-Mark-120px-plus.png"></img> + Finance Community =  -->
+	    <pre><code data-trim data-noescape>
+            ## Delta
+            delta.c <- function(){pnorm(d1())}
+            delta.p <- function(){pnorm(d1()) - 1}
+
+            ## Theta
+            theta.c <- function(){-(stock * dnorm(d1()) * vol) / (2 * time) - rf * strike * exp(-rf * time) * pnorm(d2())}
+            theta.p <- function(){-(stock * dnorm(d1()) * vol) / (2 * time) + rf * strike * exp(-rf * time) * pnorm(-d2())}
+
+            ## Gamma
+            gamma <- function(){dnorm(d1()) / (stock * vol * sqrt(time))}
+
+            ## Vega
+            vega <- function(){stock * sqrt(time) * dnorm(d1())}
+
+            ## Rho
+            rho.c <- function(){strike * time * exp(-rf * time) * pnorm(d2())}
+            rho.p <- function(){-strike * time * exp(-rf * time) * pnorm(-d2())}
+</code></pre>
+	  </section>
+	  <section>
+
+	  </section>
+<!---
+	<section>
+	  <h3>What should make sense by the end of this presentation ...</h3>
+	  <p class="fragment fade-in">How securitization makes <b class="fragment highlight-green">financing assets cheaper</b>,</p>
+	  <p class="fragment fade-in">and how it makes some assets receive financing that otherwise <b class="fragment highlight-red">wouldn't</b></p>
+	</section>
+	<section>
+	  <h3>Securitization means ...</h3>
+
+	  <p style="text-align:left;">The transformation of a set of (generally) illiquid assets into a tradeable portfolio of these assets.</p>
+	  <br>
+	  <p style="text-align:left;">A classic example is mortgage loans.</p>
+	  <aside class="notes">
+	    A classic example is a set of mortgage loans.  Each loan alone is not a tradeable security, however a portfolio of thousands of mortgages can be packaged and turned into a security.
+	    However we can securitize a side variety of assets---David Bowie famously securitized royalty payments for his songs.
+	  </aside>
+	</section>
+	
+	<section>
+	  <section>
+	    <h3>What can we securitize?</h3>
+	    <p style="text-align:left;" class="fragment highlight-current-blue">
+	      Any asset which generates a stream of cash flows (often loans, but can also be leases and other trade receivables).
+	    </p>
+	    <p style="text-align:left;" class="fragment highlight-current-blue">
+	      To securitize an asset it is necessary to be able to statistically describe the assets' cash flows.
+	    </p>
+	    <p style="text-align:left;" class="fragment highlight-current-blue">
+	      The ownership of the assets must also be transferable.
+	    </p>
+	    <aside class="notes">
+	      "Statistically describe" => such as expected cash flows, variance and covariances.
+	    </aside>
+	  </section>
+	  <section>
+	    <p style="text-align:left;">Assets are more appropriate for securitization if:</p>
+	    <ul>
+	      <li class="fragment highlight-current-blue">they provide diversification---geographic or economic.</li>
+	      <li class="fragment highlight-current-blue">there is a large number of assets.</li>
+	      <li class="fragment highlight-current-blue">there correlation structure is known, and the assets preferably have low correlations.</li>
+	      <li class="fragment highlight-current-red"> Correlation is key...</li>
+	    </ul>
+	  </section>
+	</section>
+
+	<section>
+	  <section>
+	    <h3>Why Securitize Assets?</h3>
+	    <ul>
+	      <li class="fragment highlight-current-blue">diversification</li>
+	      <li class="fragment highlight-current-blue">financial engineering---structuring tranches to meet different risk-reward profiles, and investment horizons.</li>
+	      <li class="fragment highlight-current-blue">increased liquidity.</li>
+	    </ul>
+	    <aside class="notes">
+	      - desired by present market participants. This allows us to target risk/return profiles which are desirable to a larger pool of investors.
+	    </aside>
+	  </section>
+	  <section>
+	    <ul>
+	      <li class="fragment highlight-current-blue">lower transaction costs in secondary market.</li>
+	      <li class="fragment highlight-current-blue">moves assets off of a firm's balance sheet </li>
+	      <li class="fragment highlight-current-blue">lowers funding costs.</li>
+	    </ul>
+	    <aside class="notes">
+	      Note: lowers funding costs => and securitization may allow the financing of assets that would not receive financing individually.
+	      Moves assets off BS great if assets are illiquid
+	      Moves off BS:  (1) on BS they may be subject to a higher discount rate.  Also, the originator receives an immediate lump sum in exchange for future payments, and therefore can make new loans.
+	    </aside>
+	  </section>
+	  <section>
+	    <ul>
+	      <li class="fragment highlight-current-blue">Separates the credit rating of the originator from the security.  </li>
+	      <li class="fragment highlight-current-blue">Facilitates geographic dispersion of funding to areas underserved by depository institutions.</li>
+	      <li class="fragment highlight-current-blue">Issuers can tailor the maturity, yield, and seniority to suit investor preference. </li>
+	    </ul>
+	    <aside class="notes">
+	      Separate credit rating => This means the security can have a higher credit rating (and therefore lower yield) that if it were help on the originators balance sheet.
+	    </aside>
+	  </section>
+	  <section data-background-image="./code_image.jpg">
+	    <div class="stretch">
+	      <iframe src="https://micfm.shinyapps.io/markowitz_app1/" height="100%" width="100%"></iframe>
+	    </div>
+	    <!-- <a href="https://micfm.shinyapps.io/markowitz_app1/" data-preview-link>Interact with Diversification</a> -->
+	    <!-- <iframe width="100%" height="100%" src="https://www.w3schools.com"></iframe> -->
+<!---	  </section>
+	</section>
+</section>
+
+<!-- start background and history -->
+<!---
+<section>
+  <section>
+    <h3>Background and History</h3>
+    <ul>
+      <li><b class="fragment highlight-current-blue">Pre-1970s:</b>  Securitization was an effectively <b class="fragment highlight-red">non-existent</b> industry. </li>
+      <li><b class="fragment highlight-current-blue">1970s:</b>Ginnie Mae, Fannie Mae, and Freddie Mac started providing a guarantee on mortgage pass-through securities. </li>
+      <li><b class="fragment highlight-current-blue">1983:</b> Fannie Mae issued the first Collateralized Mortgage Obligation (CMO). CMOs address <b class="fragment highlight-red">pre-payment risk</b> by tranching. </li>
+      <li><b class="fragment highlight-current-blue">1985:</b> Asset Backed Security (ABS) offerings.</li>
+    </ul>
+    <aside class="notes">
+      Securitizing mortgages => This made obtaining mortgage financing much easier for consumers, because securitization allowed lenders to easily move mortgages off their balance sheet if they needed to, or were concerned about interest rate risk.
+      CMOs: widen the investor base in MBS by separating the security into tranches which determine payment precedence.
+      First ABS: Sperry Lease Finance Corp. securitized computer equipment leases.
+    </aside>
+  </section>
+  <section>
+    <h3>Today</h3>
+    <ul>
+      <li>Common to securitize <b class="fragment highlight-current-blue">auto loans</b>, <b class="fragment highlight-current-blue">credit card receivables</b>, <b class="fragment highlight-current-blue">student loans</b>, <b class="fragment highlight-current-blue">entertainment royalties</b>, and <b class="fragment highlight-current-blue">home equity loans</b> among other assets.</li>
+      <li>Annual issuance in the <b class="fragment highlight-green">trillions</b> of dollars.</li>
+      <li>    <a href="https://www.moodys.com/sites/products/ProductAttachments/Spotlight%20on%20structured%20finance.pdf">Securitization Finances 30% of US Capital Markets Funding Needs Annually and 40% Historically</a></li>
+    </ul>
+  </section>
+</section>
+
+<!-- end background and history -->
+
+<!-- start steps in process section -->
+<!--
+<section>
+  <section>
+    <h3>Steps in the Securitization Process</h3>
+    <ol>
+      <li> Assets are created. </li>
+      <li> A special purpose vehicle (SPV) is created and ownership of the assets is transferred to the SPV.</li>
+      <li> A claim structure, and credit enhancements, are added to the cash flows generated by the assets in the SPV.  </li>
+      <li>The SPV issues the claims as securities.</li>
+      <li> NRSROs rate the claims.</li>
+    </ol>
+    <aside class="notes">
+      Example asset creation: the origination of a loan.
+      Originator receives a sales price on transfer to SPV.
+      NRSRO rating: This is important from a regulatory standpoint.  It affects who can purchase the securities.
+    </aside>
+  </section>
+  <!-- <section data-background-image='./fdic_sec_chart.jpg' data-background-size="1000px"> -->
+  <!--
+  <section>
+    <h5><a href="https://www.fdic.gov/regulations/examinations/supervisory/insights/sisum08/article01_transparency.html">Source: fdic.gov</a></h5>
+    <image class="stretch" src="./fdic_sec_chart.jpg"></image>
+  </section>
+  <section>
+    <h3>Participants in Securitizations</h3>
+    <ul>
+      <li><b class="fragment highlight-current-blue">Originator</b>: initially originates the loan or asset.</li>
+      <li><b class="fragment highlight-current-blue">Special Purpose Vehicle</b>:  a legally separate entity which holds the assets bought from the originator.</li>
+      <li><b class="fragment highlight-current-blue">Trust</b>:  the assets may be held by the SPV, or transferred to a trust.</li>
+      <li><b class="fragment highlight-current-blue">Underwriters</b>: lessen risk in the security's sale, and often assist in structuring the security.</li>
+    </ul>
+  </section>
+  <section>
+    <ul>
+      <li><b class="fragment highlight-current-blue">Dealers</b>:  make a secondary market in the security.</li>
+      <li><b class="fragment highlight-current-blue">Rating agencies (NRSROs)</b>:  determine the likelihood of default (amount of credit risk) in the security. </li>
+      <li><b class="fragment highlight-current-blue">Insurers</b>:  Private companies and government agencies ensure payment for a fee or through credit default swaps.</li>
+      <aside class="notes">
+	Credit rating: This is done on an ongoing basis.  Such ratings are not required if the security will be sold in a private placement, however most ABS and MBS are rated.  The ratings determine which sets of investors can buy the security.
+      </aside>
+  </section>
+  <section>
+    <ul>
+      <li><b class="fragment highlight-current-blue">Servicers</b>:  collects payments from borrowers (or asset) and forwards them through to the SPV.</li>
+      <li><b class="fragment highlight-current-blue">Investors</b>:  households, institutions, and governments.</li>    
+    </ul>
+    <aside class="notes">
+      The servicer earns a fee for this work.
+      Affected by whether NRSROs rate the security as "investment-grade".
+    </aside>
+  </section>
+</section>
+<!-- end steps in process section -->
+
+<!-- start isolation section -->
+<!--
+<section>
+  <h3>Isolation</h3>
+  <p style="text-align:left;">A key point of securitization is to isolate the assets (and the cash flows they generate) from the originator of the assets.</p>
+  <ul>
+    <li>Originator is not liable for payments.</li>
+    <li>The transfer of ownership from the originator to the SPV is a "true sale".</li>
+  </ul>
+  <aside class="notes">
+    The originator may thereafter act as a servicer of the assets.
+  </aside>
+</section>
+<!-- end isolation section -->
+
+<!-- start credit enhancement  -->
+<!--
+<section>
+  <section>
+    <h3>Credit Enhancement</h3>
+    <p style="text-align:left;">Methods used to lessen the risk borne by investors in a securitization.</p>
+    <ul>
+      <li><b class="fragment highlight-current-blue">Tranching</b>: Transfers risk from one subset of the security’s investors to another by assigning securities first, second, third, etc claim on cash flows.
+      </li>
+    </ul>
+    <aside class="notes">
+      Tranching: assigning subsets of the security first, second, third, etc claim on the cash flows from the underlying assets.  Cash flows form a *waterfall* down through the tranches, and so losses are incurred from the bottom tranche up.  This doesn't lessen the risk of the overall security---just transfers risk from one subset of the security's investors to another.
+    </aside>
+  </section>
+  <section>
+    <h3>Credit Enhancement</h3>
+    <ul>
+      <li><b class="fragment highlight-current-blue">Overcollateralization</b>: the security collateral exceeds the value of the security ensuring, that even with some default on underlying assets, the security can make timely payments.</li>
+    </ul>
+  </section>
+  <section>
+    <h3>Credit Enhancement</h3>
+    <ul>
+      <li><b class="fragment highlight-current-blue">Third-party guarantee</b>:  an entity assumes some of the bondholders' risk.</li>
+    </ul>
+    <aside class="notes">
+      Guarantee: This may be through forms of bond insurance, and maybe purchased form private entities, or often the government (for example the guarantees provided by Fannie Mae and Freddie Mac in the U.S.).
+    </aside>
+  </section>
+</section>
+
+<!-- end credit enhancement  -->
+<!--
+<section>
+  <section>
+    <h3>Is There a Downside to Securitization?</h3>
+    <p style="text-align:left;">This process relies on the <b class="fragment highlight-red">investors ability to determine the underlying asset credit risk</b>, and thereby relies on credit rating agencies.</p>
+    <ul>
+      <li> If the risk is assessed incorrectly, this will cause misallocation of funds.</li>
+      <li>This is exacerbated by complex capital structures, the separation of ownership and origination, and the origination incentive system.  </li>
+      <li>Example: US housing market prior to 2008.</li>
+    </ul>
+    <aside class="notes">
+      Since securitization is a powerful tool to funnel capital to borrowers, the misallocation of this capital may cause substantial distortions.
+    </aside>
+  </section>
+  <section>
+    <ul>
+      <li>See <a href="https://www.imf.org/external/pubs/ft/wp/2013/wp13255.pdf">Securitization: Lessons Learned and the Road Ahead</a> for a good summary of how components of the securitization process failed in the lead-up to the 2008 financial crisis.</li>
+    </ul>
+  </section>
+</section>
+
+<section>
+  <section>
+    <h2> An Example</h2>
+  </section>
+
+  <section>
+    <p style="text-align:left;"><b class="fragment highlight-red">The Problem</b>: The <b class="fragment highlight-red">risks</b> and costs of biomedical research have increased due to underlying factors in the research and approval process.
+    </p>
+    <ul>
+      <li>This has lessened the ability of traditional public and private equity to finance such research.</li>
+    </ul>
+    <aside class="notes">
+      Lessened particulary given their investment horizon constraints and more stringent requirements on real-time pricing of investments.
+    </aside>
+  </section>
+<!--
+  <!-- <section data-background-image="https://wallpapercave.com/w/cFdJSqI"> -->
+<!--  <section data-background-image='./death_valley.jpg'>
+    <p style="text-align:left;">This has caused a funding gap in biomed research, often referred to as the "<b class="fragment highlight-red">valley of death</b>".
+  </section>
+  <section>
+    
+    <p style="text-align:left;">In 2010 <b class="fragment highlight-green">$48 billion</b> was spent on basic research in drug development, <b class="fragment highlight-red">$7 billion</b> was spent on translating that into marketable componds, and <b class="fragment highlight-green">$52 billion</b> was spent on clinical development (Fagnan et al 2013).</p>
+  </section>
+  <section>
+    <p style="text-align:left;">Attempts are being made to use securitization structures to fund biomed research through selling "<b class="fragment highlight-blue">Research Backed Obligations</b>",</p>
+    <ul>
+      <li>RBOs have <b class="fragment highlight-green">bond-like</b> tranches, and investment horizons which are acceptable to investors.</li>
+      <li>The primary market for bonds is <b class="fragment highlight-green">much larger</b> than equity.</li>
+  </section>
+  <section>
+    <h3>Cash Flows</h3>
+    <p style="text-align:left;">Assume the following cash flows for an investment in drug-development if the drug is a success, and failure, respectively.</p>
+    <ul>
+      <li> <b class="fragment highlight-green">Success</b>: $200 million cost at time 0, no cash flows in years 1 through 10, and $2 billion a year in years 11 through 20.</li>
+      <li> <b class="fragment highlight-red">Failure</b>: $200 million cost at time 0, and no further cash flows.</li>
+  </section>
+  <section>
+    <h3>Probabilities</h3>
+    <p style="text-align:left;">Further, assume the following probabilities of success and failure.</p>
+    <ul>
+      <li> <b class="fragment highlight-green">Success</b>: 5%</li>
+      <li> <b class="fragment highlight-red">Failure</b>: 95%</li>
+  </section>
+  <section>
+    <h3>Parameters of an Individual Asset</h3>
+    <ul>
+      <li>Expected Return: 11.9%</li>
+      <li>Standard Deviation: <b class="fragment highlight-red">423%</b></li>
+    </ul>
+  </section>
+  <section>
+    <h3>Parameters of a RBO Backed by 150 Assets</h3>
+    <p style="text-align:left;">Assuming the assets are independently and identically distributed (=> pairwaise <b class="fragment highlight-blue">correlation is 0%</b>).</p>
+    <ul>
+      <li>Expected Return: 11.9%</li>
+      <li>Standard Deviation: <b class="fragment highlight-green">34.6%</b></li>
+    </ul>
+  </section>
+  <section>
+    <h3>...but this requres a much greater capital committment.</h3>
+  </section>
+  <section>
+    <h5>See this <a href="https://github.com/Matt-Brigida/example-megafund-spreadsheet">SPREADSHEET</a> for an analysis of this example RBO.</h5>
+  </section>
+</section>
+
+
+<section>
+  <section data-background-image="mi.png" data-background-size="1000px"> </section>
+  <section>
+    <h3>Matt Brigida</h3>
+    Contact: mbrigida [at] milkeninstitute [dot] org
+  </section>
+  <section> <a href="https://github.com/Matt-Brigida/securitization-presentation">PRESENTATION CODE</a></section>
+</section>
+-->
+
+</div>
+</div>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.js"></script>
+
+<script>
+  // More info about config & dependencies:
+  // - https://github.com/hakimel/reveal.js#configuration
+  // - https://github.com/hakimel/reveal.js#dependencies
+  Reveal.initialize({
+
+  transition: 'convex',
+  
+  <!-- menu: { -->
+  <!-- 	// Specifies which side of the presentation the menu will  -->
+  <!-- 	// be shown. Use 'left' or 'right'. -->
+  <!-- 	side: 'left', -->
+
+  <!-- 	// Add slide numbers to the titles in the slide list. -->
+  <!-- 	// Use 'true' or format string (same as reveal.js slide numbers) -->
+  <!-- 	numbers: false, -->
+
+  <!-- 	// Specifies which slide elements will be used for generating -->
+  <!-- 	// the slide titles in the menu. The default selects the first -->
+  <!-- 	// heading element found in the slide, but you can specify any -->
+  <!-- 	// valid css selector and the text from the first matching -->
+  <!-- 	// element will be used. -->
+  <!-- 	// Note: that a section data-menu-title attribute or an element -->
+  <!-- 	// with a menu-title class will take precedence over this option -->
+  <!-- 	titleSelector: 'h1, h2, h3, h4, h5, h6', -->
+
+  <!-- 	// If slides do not have a matching title, attempt to use the -->
+  <!-- 	// start of the text content as the title instead -->
+  <!-- 	useTextContentForMissingTitles: false, -->
+
+  <!-- 	// Hide slides from the menu that do not have a title. -->
+  <!-- 	// Set to 'true' to only list slides with titles. -->
+  <!-- 	hideMissingTitles: false, -->
+
+  <!-- 	// Add markers to the slide titles to indicate the  -->
+  <!-- 	// progress through the presentation -->
+  <!-- 	markers: false, -->
+
+  <!-- 	// Specify custom panels to be included in the menu, by -->
+  <!-- 	// providing an array of objects with 'title', 'icon' -->
+  <!-- 	// properties, and either a 'src' or 'content' property. -->
+  <!-- 	custom: false, -->
+
+  <!-- 	// Specifies the themes that will be available in the themes -->
+  <!-- 	// menu panel. Set to 'false' to hide themes panel. -->
+  <!-- 	themes: [ -->
+  <!-- 		{ name: 'Black', theme: 'css/theme/black.css' }, -->
+  <!-- 		{ name: 'White', theme: 'css/theme/white.css' }, -->
+  <!-- 		{ name: 'League', theme: 'css/theme/league.css' }, -->
+  <!-- 		{ name: 'Sky', theme: 'css/theme/sky.css' }, -->
+  <!-- 		{ name: 'Beige', theme: 'css/theme/beige.css' }, -->
+  <!-- 		{ name: 'Simple', theme: 'css/theme/simple.css' }, -->
+  <!-- 		{ name: 'Serif', theme: 'css/theme/serif.css' }, -->
+  <!-- 		{ name: 'Blood', theme: 'css/theme/blood.css' }, -->
+  <!-- 		{ name: 'Night', theme: 'css/theme/night.css' }, -->
+  <!-- 		{ name: 'Moon', theme: 'css/theme/moon.css' }, -->
+  <!-- 		{ name: 'Solarized', theme: 'css/theme/solarized.css' } -->
+  <!-- 	], -->
+
+  <!-- 	// Specifies if the transitions menu panel will be shown. -->
+  <!-- 	transitions: true, -->
+
+  <!-- 	// Adds a menu button to the slides to open the menu panel. -->
+  <!-- 	// Set to 'false' to hide the button. -->
+  <!-- 	openButton: true, -->
+
+  <!-- 	// If 'true' allows the slide number in the presentation to -->
+  <!-- 	// open the menu panel. The reveal.js slideNumber option must  -->
+  <!-- 	// be displayed for this to take effect -->
+  <!-- 	openSlideNumber: false, -->
+
+  <!-- 	// If true allows the user to open and navigate the menu using -->
+  <!-- 	// the keyboard. Standard keyboard interaction with reveal -->
+  <!-- 	// will be disabled while the menu is open. -->
+  <!-- 	keyboard: true, -->
+
+  <!-- 	// Normally the menu will close on user actions such as -->
+  <!-- 	// selecting a menu item, or clicking the presentation area. -->
+  <!-- 	// If 'true', the sticky option will leave the menu open -->
+  <!-- 	// until it is explicitly closed, that is, using the close -->
+  <!-- 	// button or pressing the ESC or m key (when the keyboard  -->
+  <!-- 	// interaction option is enabled). -->
+  <!-- 	sticky: false, -->
+
+  <!-- 	// If 'true' standard menu items will be automatically opened -->
+  <!-- 	// when navigating using the keyboard. Note: this only takes  -->
+  <!-- 	// effect when both the 'keyboard' and 'sticky' options are enabled. -->
+  <!-- 	autoOpen: true, -->
+
+  <!-- 	// If 'true' the menu will not be created until it is explicitly -->
+  <!-- 	// requested by calling RevealMenu.init(). Note this will delay -->
+  <!-- 	// the creation of all menu panels, including custom panels, and -->
+  <!-- 	// the menu button. -->
+  <!-- 	delayInit: false, -->
+
+  <!-- 	// By default the menu will load it's own font-awesome library -->
+  <!-- 	// icons. If your presentation needs to load a different -->
+  <!-- 	// font-awesome library the 'loadIcons' option can be set to false -->
+  <!-- 	// and the menu will not attempt to load the font-awesome library. -->
+  <!-- 	loadIcons: true -->
+  <!-- }, -->
+  
+  audio: {
+  prefix: 'audio/', 	// audio files are stored in the "audio" folder
+  suffix: '.wav',		// audio files have the ".ogg" ending --- changed to wav
+  textToSpeechURL: null,  // the URL to the text to speech converter
+  defaultNotes: false, 	// use slide notes as default for the text to speech converter
+  defaultText: false, 	// use slide text as default for the text to speech converter
+  advance: 0, 		// advance to next slide after given time in milliseconds after audio has played, use negative value to not advance 
+  autoplay: false,	// automatically start slideshow
+  defaultDuration: 5,	// default duration in seconds if no audio is available 
+  playerOpacity: 0.05,	// opacity value of audio player if unfocused
+  playerStyle: 'position: fixed; bottom: 4px; left: 25%; width: 50%; height:75px; z-index: 33;', // style used for container of audio controls 
+  startAtFragment: false, // when moving to a slide, start at the current fragment or at the start of the slide
+  },
+  chalkboard: { 
+  src: null,
+  readOnly: undefined, 
+  toggleChalkboardButton: { left: "90px", bottom: "30px", top: "auto", right: "auto" },
+  toggleNotesButton: { left: "150px", bottom: "30px", top: "auto", right: "auto" },
+  },
+  dependencies: [
+  { src: 'plugin/audio-slideshow/slideshow-recorder.js', condition: function( ) { return !!document.body.classList; } },				
+  { src: 'plugin/audio-slideshow/audio-slideshow.js', condition: function( ) { return !!document.body.classList; } },
+  { src: 'plugin/markdown/marked.js' },
+  { src: 'plugin/markdown/markdown.js' },
+  { src: 'plugin/menu/menu.js' },
+  { src: 'plugin/notes/notes.js', async: true },
+  <!-- { src: 'node_modules/reveal.js-menu/menu.js' }, -->
+  { src: 'plugin/chalkboard/chalkboard.js' },
+  { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+  ],
+  keyboard: {
+  67: function() { RevealChalkboard.toggleNotesCanvas() },	// toggle notes canvas when 'c' is pressed
+  66: function() { RevealChalkboard.toggleChalkboard() },	// toggle chalkboard when 'b' is pressed
+  46: function() { RevealChalkboard.clear() },	// clear chalkboard when 'DEL' is pressed
+  8: function() { RevealChalkboard.reset() },	// reset chalkboard data on current slide when 'BACKSPACE' is pressed
+  68: function() { RevealChalkboard.download() },	// downlad recorded chalkboard drawing when 'd' is pressed
+  82: function() { Recorder.toggleRecording(); },	// press 'r' to start/stop recording
+  90: function() { Recorder.downloadZip(); }, 	// press 'z' to download zip containing audio files
+  84: function() { Recorder.fetchTTS(); }, 	// press 't' to fetch TTS audio files
+  },
+  });
+</script>
+</body>
+</html>
